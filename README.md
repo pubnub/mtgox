@@ -25,29 +25,30 @@ Specifically we'll be using the `mtgox.subcribe(...)` instance method to focus o
 
 > Download JAR or Source: https://github.com/pubnub/mtgox
 
-    import org.json.JSONObject;
-    import com.pubnub.mtgox.MtGox;
-    import com.pubnub.mtgox.MtGoxCallback;
-    
-    public class PubnubMtGoxSample {
-    
-        public static void main(String[] args) {
-            MtGox mtgx = new MtGox();
-    
-            mtgx.subscribe("ticker.BTCUSD", new MtGoxCallback(){
-    
-                @Override
-                public void callback(JSONObject data) {
-                    try {
-                        String channel_name = data.getString("channel_name");
-                        String avg_value = data.getJSONObject("ticker").getJSONObject("avg").getString("value");
-                        System.out.println(channel_name + " : " + avg_value);
-                    } catch (Exception e) {}
-    
-                }});
-        }
-    }
+```java
+import org.json.JSONObject;
+import com.pubnub.mtgox.MtGox;
+import com.pubnub.mtgox.MtGoxCallback;
 
+public class PubnubMtGoxSample {
+
+    public static void main(String[] args) {
+        MtGox mtgx = new MtGox();
+
+        mtgx.subscribe("ticker.BTCUSD", new MtGoxCallback(){
+
+            @Override
+            public void callback(JSONObject data) {
+                try {
+                    String channel_name = data.getString("channel_name");
+                    String avg_value = data.getJSONObject("ticker").getJSONObject("avg").getString("value");
+                    System.out.println(channel_name + " : " + avg_value);
+                } catch (Exception e) {}
+
+            }});
+    }
+}
+```
 > See Full MtGox Example with Java Source Code - https://github.com/pubnub/mtgox/blob/master/java/examples/PubnubMtGoxSample.java
 
 To compile the example got to https://github.com/pubnub/mtgox/tree/master/java and run
